@@ -55,7 +55,7 @@ char** tokenize(char* input){
         token = strtok(NULL, TOKEN_DELIMITERS);
     }
 
-    tokens[index] = NULL;
+    tokens[index] = NULL; //execvp needs NULL at the end
 
     return tokens;
 }
