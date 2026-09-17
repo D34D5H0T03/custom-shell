@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #include "parser.h"
 #include "executor.h"
@@ -11,6 +12,20 @@ int main(int argc, char** argv){
     char* line;
     char** args;
     int status = 1;
+
+    //ctr+c signal interrupt handling
+    struct sigaction sa;
+    sa.sa_handler = SIG_IGN;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+
+    if(sigaction(SIGINT, &sa, NULL) == -1){
+        perror("Failed to interrupt SIGINT"); //ctr+c
+    }
+    
+    if(sigaction(SIGTSTP, &sa, NULL) == -1){
+        perror("Failed to ignore SIGTSTP"); //ctr+z
+    }
 
     //REPL
     do{
