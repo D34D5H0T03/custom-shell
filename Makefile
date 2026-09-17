@@ -4,12 +4,18 @@ CC = gcc
 #compilation flags
 CFLAGS = -Wall -Iinclude
 
-all: custom_shell
+#target path
+TARGET = bin/custom_shell
 
-#executable
-custom_shell: src/main.c src/parser.c src/executor.c
-	$(CC) $(CFLAGS) src/main.c src/parser.c src/executor.c -o custom_shell
+#source files
+SRCS = src/main.c src/parser.c src/executor.c src/builtins.c
 
-#for clean [make clean]
+all: $(TARGET)
+
+$(TARGET): $(SRCS)
+	mkdir -p bin
+	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET)
+
+# For clean [make clean]
 clean:
-	rm -f custom_shell
+	rm -rf bin/

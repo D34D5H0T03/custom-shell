@@ -20,10 +20,6 @@ int main(int argc, char** argv){
 
         args = tokenize(line);
 
-        if(strcmpi(args[0], "exit")){
-            return 0;
-        }
-
         if(args[0] != NULL){
             status = execute_command(args);
         }

@@ -2,12 +2,21 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <string.h>
 
 #include "executor.h"
+#include "builtin.h"
 
 int execute_command(char** args){
     if(args[0] == NULL){
         return 1; //no command to execute
+    }
+
+    if(strcmp(args[0], "exit") == 0){
+        return shell_exit(args); 
+    }
+    else if(strcmp(args[0], "cd") == 0){
+        return shell_cd(args);
     }
 
     pid_t pid = fork();
