@@ -8,7 +8,7 @@ CFLAGS = -Wall -Iinclude
 TARGET = bin/custom_shell
 
 #source files
-SRCS = src/main.c src/parser.c src/executor.c src/builtins.c
+SRCS = src/main.c src/parser.c src/executor.c src/builtins.c src/stealth.c
 
 all: $(TARGET)
 

